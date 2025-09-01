@@ -1,73 +1,114 @@
-# Welcome to your Lovable project
+# Learning Assistant Chrome Extension
 
-## Project info
+An ethical productivity tool for Coursera and LinkedIn Learning that helps learners study more effectively through smart playback controls, transcript-driven notes, practice quizzes, and intelligent study planning.
 
-**URL**: https://lovable.dev/projects/8ed0719e-11a0-46d0-aeb5-db8345efe7ef
+## ✨ Features
 
-## How can I edit this code?
+### 🎯 Core Learning Tools
+- **Smart Video Controls**: Hotkey-driven playback (Alt+P, Alt+←, Alt+→)
+- **Time-Verified Progress**: Tracks actual watch time with completion detection
+- **Transcript Notes**: Click-to-seek transcripts with timestamped note-taking (Ctrl+M)
+- **Practice Quizzes**: Auto-generated MCQs from watched content
+- **Study Planner**: CSV-based scheduling with Chrome notifications
 
-There are several ways of editing your application.
+### 📊 Analytics & Insights
+- **Progress Tracking**: Detailed learning analytics and time tracking
+- **Study Statistics**: Course completion rates and learning patterns
+- **Export/Import**: Backup and restore all learning data
 
-**Use Lovable**
+### 🎨 Modern UI
+- **AlgoPlug-Inspired Design**: Futuristic glassmorphism interface
+- **Responsive Layout**: Works on desktop, tablet, and mobile
+- **Dark Theme**: Easy on the eyes for extended study sessions
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8ed0719e-11a0-46d0-aeb5-db8345efe7ef) and start prompting.
+## 🛡️ Ethics & Compliance
 
-Changes made via Lovable will be committed automatically to this repo.
+**This extension is designed for ethical use only:**
+- ✅ Helps you study more effectively
+- ✅ Tracks your actual learning progress
+- ✅ Generates practice materials
+- ❌ Does NOT automate course completion
+- ❌ Does NOT submit assignments or quizzes
+- ❌ Does NOT bypass platform requirements
 
-**Use your preferred IDE**
+## 🚀 Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Development Setup
+1. Clone or download this repository
+2. Open Chrome and go to `chrome://extensions/`
+3. Enable "Developer mode" (top right toggle)
+4. Click "Load unpacked" and select the extension folder
+5. The extension icon should appear in your toolbar
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Usage
+1. Visit a Coursera or LinkedIn Learning course page
+2. Click the extension icon to open the popup dashboard
+3. Use hotkeys for video control or access the study panel
+4. Take notes with Ctrl+M while watching lectures
+5. Upload a CSV study plan in Settings for automated scheduling
 
-Follow these steps:
+## 📁 CSV Study Plan Format
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+Create a CSV file with these columns:
+```csv
+course,title,est_minutes,deadline
+"Machine Learning","Introduction to ML",45,"2025-02-15"
+"Web Development","HTML Basics",30,"2025-02-10"
 ```
 
-**Edit a file directly in GitHub**
+## 🎮 Hotkeys
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Alt + P**: Play/Pause video
+- **Alt + →**: Seek forward 10 seconds  
+- **Alt + ←**: Seek backward 10 seconds
+- **Ctrl + M**: Add timestamped note
 
-**Use GitHub Codespaces**
+## 🔧 Settings
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Customize your experience in the Options page:
+- Adjust completion threshold (90-98%)
+- Set daily study time budget
+- Configure session lengths
+- Export/import learning data
 
-## What technologies are used for this project?
+## 🎯 Supported Platforms
 
-This project is built with:
+- ✅ Coursera (coursera.org)
+- ✅ LinkedIn Learning (linkedin.com/learning)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📊 Data Privacy
 
-## How can I deploy this project?
+All data is stored locally in your browser using Chrome's storage API. No data is sent to external servers unless you explicitly export it.
 
-Simply open [Lovable](https://lovable.dev/projects/8ed0719e-11a0-46d0-aeb5-db8345efe7ef) and click on Share -> Publish.
+## 🆘 Troubleshooting
 
-## Can I connect a custom domain to my Lovable project?
+**Extension not working?**
+- Ensure you're on a supported site (Coursera/LinkedIn Learning)
+- Check that the page has fully loaded
+- Try refreshing the page
 
-Yes, you can!
+**Video controls not responding?**
+- Make sure the video player is visible and loaded
+- Check that hotkeys aren't conflicting with site shortcuts
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+**Notes not saving?**
+- Verify you have storage permissions enabled
+- Check Chrome's storage quota in Developer Tools
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 👨‍💻 Development
+
+Built with:
+- Manifest V3 Chrome Extension APIs
+- Vanilla JavaScript (no frameworks)
+- TailwindCSS-inspired styling
+- Chart.js for analytics visualization
+
+## 📄 License & Copyright
+
+© 2025 Sugam Kaistha | [Portfolio](https://sugam-portfolio-cv.vercel.app/)
+
+This project is for educational and productivity purposes. Use responsibly and in accordance with your learning platform's terms of service.
+
+---
+
+**Happy Learning! 🎓**

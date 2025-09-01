@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Assistant - Settings</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="la-options-container">
+        <!-- Sidebar Navigation -->
+        <nav class="la-sidebar">
+            <div class="la-sidebar-header">
+                <div class="la-logo">
+                    <div class="la-logo-icon">📚</div>
+                    <div class="la-logo-text">
+                        <h1>Learning Assistant</h1>
+                        <p>Settings & Analytics</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="la-nav-menu">
+                <button class="la-nav-item active" data-section="dashboard">
+                    <span class="la-nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </button>
+                <button class="la-nav-item" data-section="planner">
+                    <span class="la-nav-icon">📅</span>
+                    <span>Study Planner</span>
+                </button>
+                <button class="la-nav-item" data-section="notes">
+                    <span class="la-nav-icon">📝</span>
+                    <span>Notes</span>
+                </button>
+                <button class="la-nav-item" data-section="analytics">
+                    <span class="la-nav-icon">📈</span>
+                    <span>Analytics</span>
+                </button>
+                <button class="la-nav-item" data-section="settings">
+                    <span class="la-nav-icon">⚙️</span>
+                    <span>Settings</span>
+                </button>
+                <button class="la-nav-item" data-section="export">
+                    <span class="la-nav-icon">💾</span>
+                    <span>Export/Import</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="la-main-content">
+            <!-- Dashboard Section -->
+            <section id="section-dashboard" class="la-section active">
+                <div class="la-section-header">
+                    <h2>Dashboard</h2>
+                    <p>Overview of your learning progress and statistics</p>
+                </div>
+
+                <div class="la-stats-grid">
+                    <div class="la-stat-card">
+                        <div class="la-stat-icon">⏱️</div>
+                        <div class="la-stat-content">
+                            <div class="la-stat-value" id="dashTotalTime">0h 0m</div>
+                            <div class="la-stat-label">Total Watch Time</div>
+                        </div>
+                    </div>
+                    <div class="la-stat-card">
+                        <div class="la-stat-icon">🎓</div>
+                        <div class="la-stat-content">
+                            <div class="la-stat-value" id="dashTotalCourses">0</div>
+                            <div class="la-stat-label">Courses Tracked</div>
+                        </div>
+                    </div>
+                    <div class="la-stat-card">
+                        <div class="la-stat-icon">📝</div>
+                        <div class="la-stat-content">
+                            <div class="la-stat-value" id="dashTotalNotes">0</div>
+                            <div class="la-stat-label">Notes Created</div>
+                        </div>
+                    </div>
+                    <div class="la-stat-card">
+                        <div class="la-stat-icon">🧠</div>
+                        <div class="la-stat-content">
+                            <div class="la-stat-value" id="dashQuizAvg">N/A</div>
+                            <div class="la-stat-label">Quiz Average</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="la-chart-container">
+                    <h3>Learning Progress</h3>
+                    <canvas id="progressChart" width="400" height="200"></canvas>
+                </div>
+
+                <div class="la-recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div id="recentActivity">
+                        <div class="la-empty-state">
+                            <div class="la-empty-icon">📊</div>
+                            <p>No recent activity</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Study Planner Section -->
+            <section id="section-planner" class="la-section">
+                <div class="la-section-header">
+                    <h2>Study Planner</h2>
+                    <p>Upload your study schedule and manage automated reminders</p>
+                </div>
+
+                <div class="la-upload-section">
+                    <h3>Upload Study Schedule</h3>
+                    <div class="la-upload-area" id="csvUploadArea">
+                        <div class="la-upload-icon">📄</div>
+                        <h4>Drag & Drop CSV File</h4>
+                        <p>Or click to browse files</p>
+                        <input type="file" id="csvFileInput" accept=".csv" hidden>
+                        <div class="la-upload-hint">
+                            Expected format: course, title, est_minutes, deadline
+                        </div>
+                    </div>
+                </div>
+
+                <div class="la-schedule-preview" id="schedulePreview" style="display: none;">
+                    <h3>Schedule Preview</h3>
+                    <div class="la-schedule-stats">
+                        <div class="la-schedule-stat">
+                            <span class="la-stat-label">Total Sessions:</span>
+                            <span class="la-stat-value" id="totalSessions">0</span>
+                        </div>
+                        <div class="la-schedule-stat">
+                            <span class="la-stat-label">Total Hours:</span>
+                            <span class="la-stat-value" id="totalHours">0</span>
+                        </div>
+                        <div class="la-schedule-stat">
+                            <span class="la-stat-label">Days Planned:</span>
+                            <span class="la-stat-value" id="daysPlanned">0</span>
+                        </div>
+                    </div>
+                    <div class="la-schedule-table" id="scheduleTable"></div>
+                    <div class="la-schedule-actions">
+                        <button class="la-btn la-btn-secondary" id="cancelSchedule">Cancel</button>
+                        <button class="la-btn la-btn-primary" id="saveSchedule">Save Schedule</button>
+                    </div>
+                </div>
+
+                <div class="la-current-schedule" id="currentSchedule">
+                    <h3>Current Schedule</h3>
+                    <div id="scheduleList">
+                        <div class="la-empty-state">
+                            <div class="la-empty-icon">📅</div>
+                            <p>No study schedule created yet</p>
+                            <p class="la-hint">Upload a CSV file to get started</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notes Section -->
+            <section id="section-notes" class="la-section">
+                <div class="la-section-header">
+                    <h2>Notes</h2>
+                    <p>View and manage all your study notes</p>
+                </div>
+
+                <div class="la-notes-filters">
+                    <div class="la-filter-group">
+                        <label for="courseFilter">Filter by Course:</label>
+                        <select id="courseFilter">
+                            <option value="">All Courses</option>
+                        </select>
+                    </div>
+                    <div class="la-search-group">
+                        <input type="text" id="notesSearch" placeholder="Search notes...">
+                    </div>
+                </div>
+
+                <div class="la-notes-list" id="allNotesList">
+                    <div class="la-empty-state">
+                        <div class="la-empty-icon">📝</div>
+                        <p>No notes found</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="section-analytics" class="la-section">
+                <div class="la-section-header">
+                    <h2>Analytics</h2>
+                    <p>Detailed insights into your learning patterns</p>
+                </div>
+
+                <div class="la-analytics-grid">
+                    <div class="la-chart-card">
+                        <h3>Daily Study Time</h3>
+                        <canvas id="dailyTimeChart" width="300" height="200"></canvas>
+                    </div>
+                    <div class="la-chart-card">
+                        <h3>Course Progress</h3>
+                        <canvas id="courseProgressChart" width="300" height="200"></canvas>
+                    </div>
+                </div>
+
+                <div class="la-detailed-stats">
+                    <h3>Detailed Statistics</h3>
+                    <div class="la-stats-table" id="detailedStatsTable">
+                        <div class="la-empty-state">
+                            <div class="la-empty-icon">📊</div>
+                            <p>No data available yet</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="section-settings" class="la-section">
+                <div class="la-section-header">
+                    <h2>Settings</h2>
+                    <p>Customize your Learning Assistant experience</p>
+                </div>
+
+                <div class="la-settings-group">
+                    <h3>Hotkeys</h3>
+                    <div class="la-setting-item">
+                        <label for="playPauseHotkey">Play/Pause:</label>
+                        <input type="text" id="playPauseHotkey" value="Alt+P" readonly>
+                    </div>
+                    <div class="la-setting-item">
+                        <label for="seekForwardHotkey">Seek Forward:</label>
+                        <input type="text" id="seekForwardHotkey" value="Alt+ArrowRight" readonly>
+                    </div>
+                    <div class="la-setting-item">
+                        <label for="seekBackwardHotkey">Seek Backward:</label>
+                        <input type="text" id="seekBackwardHotkey" value="Alt+ArrowLeft" readonly>
+                    </div>
+                    <div class="la-setting-item">
+                        <label for="addNoteHotkey">Add Note:</label>
+                        <input type="text" id="addNoteHotkey" value="Ctrl+M" readonly>
+                    </div>
+                </div>
+
+                <div class="la-settings-group">
+                    <h3>Playback</h3>
+                    <div class="la-setting-item">
+                        <label for="maxPlaybackRate">Max Playback Rate:</label>
+                        <select id="maxPlaybackRate">
+                            <option value="1.25">1.25x</option>
+                            <option value="1.5">1.5x</option>
+                            <option value="1.75">1.75x</option>
+                            <option value="2.0" selected>2.0x</option>
+                            <option value="2.5">2.5x</option>
+                        </select>
+                    </div>
+                    <div class="la-setting-item">
+                        <label for="completionThreshold">Completion Threshold:</label>
+                        <select id="completionThreshold">
+                            <option value="0.90">90%</option>
+                            <option value="0.95">95%</option>
+                            <option value="0.96" selected>96%</option>
+                            <option value="0.98">98%</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="la-settings-group">
+                    <h3>Study Planning</h3>
+                    <div class="la-setting-item">
+                        <label for="dailyBudget">Daily Study Budget (minutes):</label>
+                        <input type="number" id="dailyBudget" value="120" min="30" max="480">
+                    </div>
+                    <div class="la-setting-item">
+                        <label for="sessionLength">Session Length (minutes):</label>
+                        <input type="number" id="sessionLength" value="30" min="15" max="120">
+                    </div>
+                </div>
+
+                <div class="la-settings-actions">
+                    <button class="la-btn la-btn-secondary" id="resetSettings">Reset to Defaults</button>
+                    <button class="la-btn la-btn-primary" id="saveSettings">Save Settings</button>
+                </div>
+            </section>
+
+            <!-- Export/Import Section -->
+            <section id="section-export" class="la-section">
+                <div class="la-section-header">
+                    <h2>Export & Import</h2>
+                    <p>Backup and restore your learning data</p>
+                </div>
+
+                <div class="la-export-section">
+                    <h3>Export Data</h3>
+                    <div class="la-export-options">
+                        <div class="la-export-option">
+                            <h4>Notes Export</h4>
+                            <p>Export all your notes as CSV or JSON</p>
+                            <div class="la-export-buttons">
+                                <button class="la-btn la-btn-secondary" id="exportNotesCSV">Export as CSV</button>
+                                <button class="la-btn la-btn-secondary" id="exportNotesJSON">Export as JSON</button>
+                            </div>
+                        </div>
+                        <div class="la-export-option">
+                            <h4>Progress Data</h4>
+                            <p>Export your learning progress and statistics</p>
+                            <div class="la-export-buttons">
+                                <button class="la-btn la-btn-secondary" id="exportProgress">Export Progress</button>
+                            </div>
+                        </div>
+                        <div class="la-export-option">
+                            <h4>Complete Backup</h4>
+                            <p>Export all data including settings and schedules</p>
+                            <div class="la-export-buttons">
+                                <button class="la-btn la-btn-primary" id="exportAll">Export Everything</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="la-import-section">
+                    <h3>Import Data</h3>
+                    <div class="la-import-area" id="importArea">
+                        <div class="la-import-icon">📥</div>
+                        <h4>Import Backup File</h4>
+                        <p>Select a JSON backup file to restore your data</p>
+                        <input type="file" id="importFileInput" accept=".json" hidden>
+                        <button class="la-btn la-btn-secondary" id="selectImportFile">Select File</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="la-footer">
+            <div class="la-ethics-statement">
+                <h4>Ethics Statement</h4>
+                <p>This extension helps you study more effectively. It does not automate or falsify course completion, grading, or assessments. Use ethically and in accordance with your learning platform's terms of service.</p>
+            </div>
+            <div class="la-copyright">
+                © 2025 Sugam Kaistha | <a href="https://sugam-portfolio-cv.vercel.app/" target="_blank">Portfolio</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="la-toast-container"></div>
+
+    <!-- Loading Overlay -->
+    <div class="la-loading-overlay" id="loadingOverlay">
+        <div class="la-spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script src="../lib/papaparse.min.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>

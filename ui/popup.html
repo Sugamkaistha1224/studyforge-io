@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Assistant</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="la-popup-container">
+        <!-- Header -->
+        <header class="la-header">
+            <div class="la-logo">
+                <div class="la-logo-icon">📚</div>
+                <div class="la-logo-text">
+                    <h1>Learning Assistant</h1>
+                    <p>Smart Study Companion</p>
+                </div>
+            </div>
+            <div class="la-status-indicator" id="statusIndicator">
+                <div class="la-status-dot"></div>
+                <span id="statusText">Ready</span>
+            </div>
+        </header>
+
+        <!-- Quick Stats -->
+        <section class="la-stats-grid">
+            <div class="la-stat-card">
+                <div class="la-stat-icon">⏱️</div>
+                <div class="la-stat-content">
+                    <div class="la-stat-value" id="totalWatchTime">0h 0m</div>
+                    <div class="la-stat-label">Watch Time</div>
+                </div>
+            </div>
+            <div class="la-stat-card">
+                <div class="la-stat-icon">📝</div>
+                <div class="la-stat-content">
+                    <div class="la-stat-value" id="totalNotes">0</div>
+                    <div class="la-stat-label">Notes</div>
+                </div>
+            </div>
+            <div class="la-stat-card">
+                <div class="la-stat-icon">🎯</div>
+                <div class="la-stat-content">
+                    <div class="la-stat-value" id="quizScore">N/A</div>
+                    <div class="la-stat-label">Quiz Avg</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Controls -->
+        <section class="la-controls" id="videoControls">
+            <h3>Video Controls</h3>
+            <div class="la-control-buttons">
+                <button class="la-btn la-btn-control" id="playPauseBtn">
+                    <span class="la-btn-icon">⏯️</span>
+                    <span>Play/Pause</span>
+                </button>
+                <button class="la-btn la-btn-control" id="seekBackBtn">
+                    <span class="la-btn-icon">⏪</span>
+                    <span>-10s</span>
+                </button>
+                <button class="la-btn la-btn-control" id="seekForwardBtn">
+                    <span class="la-btn-icon">⏩</span>
+                    <span>+10s</span>
+                </button>
+            </div>
+            <div class="la-playback-info">
+                <div class="la-progress-bar">
+                    <div class="la-progress-fill" id="progressFill"></div>
+                </div>
+                <div class="la-time-info">
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">0:00</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Course -->
+        <section class="la-current-course" id="currentCourse">
+            <h3>Current Course</h3>
+            <div class="la-course-info" id="courseInfo">
+                <div class="la-course-placeholder">
+                    <div class="la-placeholder-icon">🎓</div>
+                    <p>Visit a Coursera or LinkedIn Learning page to get started</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Planner Preview -->
+        <section class="la-planner-preview" id="plannerPreview">
+            <div class="la-section-header">
+                <h3>Today's Study Plan</h3>
+                <button class="la-btn la-btn-text" id="viewFullPlan">View All</button>
+            </div>
+            <div class="la-planner-content" id="plannerContent">
+                <div class="la-empty-state">
+                    <div class="la-empty-icon">📅</div>
+                    <p>No study sessions planned</p>
+                    <button class="la-btn la-btn-primary" id="createPlanBtn">Create Plan</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Notes -->
+        <section class="la-recent-notes" id="recentNotes">
+            <div class="la-section-header">
+                <h3>Recent Notes</h3>
+                <button class="la-btn la-btn-text" id="viewAllNotes">View All</button>
+            </div>
+            <div class="la-notes-list" id="notesList">
+                <div class="la-empty-state">
+                    <div class="la-empty-icon">📝</div>
+                    <p>No notes yet</p>
+                    <p class="la-hint">Press Ctrl+M while watching to add notes</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="la-quick-actions">
+            <button class="la-btn la-btn-action" id="openPanelBtn">
+                <span class="la-btn-icon">📋</span>
+                <span>Open Study Panel</span>
+            </button>
+            <button class="la-btn la-btn-action" id="generateQuizBtn">
+                <span class="la-btn-icon">🧠</span>
+                <span>Practice Quiz</span>
+            </button>
+            <button class="la-btn la-btn-action" id="exportDataBtn">
+                <span class="la-btn-icon">📊</span>
+                <span>Export Data</span>
+            </button>
+        </section>
+
+        <!-- Footer -->
+        <footer class="la-footer">
+            <div class="la-footer-links">
+                <button class="la-footer-link" id="settingsBtn">Settings</button>
+                <button class="la-footer-link" id="helpBtn">Help</button>
+            </div>
+            <div class="la-copyright">
+                © 2025 Sugam Kaistha | <a href="https://sugam-portfolio-cv.vercel.app/" target="_blank">Portfolio</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="la-loading-overlay" id="loadingOverlay">
+        <div class="la-spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
